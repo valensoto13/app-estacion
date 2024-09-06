@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap');
+
+*{
+	margin: 0;
+	padding: 0px;
+	font-family: 'Nunito', sans-serif;
+
+}
+.estaciones{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#list-estacion{
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	& h3{
+		font-size: 30pt;
+		color: lightblue;
+	}
+}
+
+#botones{
+	padding: 20px;
+	display: flex;
+	gap: 5px;
+}
+
+.clima-apodo{
+		font-size: 20pt;
+		color: white;
+}
+.clima-ubicacion{
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	& i{
+		color: red;
+		font-size: 20pt;
+	}
+}
+.vis{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: end;
+	align-items: center;
+
+}
+.clima-visitas{
+	display: flex;
+	gap: 5px;
+	& i{
+		color: #F087A5;
+	}
+}
+
+
+.btn-clima{
+	background-color: lightblue;
+	color: black;
+	border-radius: 40px;
+	text-decoration: none;
+	width: 400px;
+	padding: 20px;
+}
+@media screen and (max-width:500px) {
+	.btn-clima{width: 70%;}
+}

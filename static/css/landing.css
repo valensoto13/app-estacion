@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Montserrat:wght@300&display=swap');
+body{
+  background: rgb(253,29,29);
+background: linear-gradient(90deg, rgba(253,29,29,1) 50%, rgba(255,137,31,1) 68%, rgba(255,167,44,1) 100%);	margin: 0;
+	box-sizing: border-box;
+}
+
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+}
+.container-btn{
+   margin-top: 15%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background: white;
+   width: 50%;
+   height: 50%;
+   border-radius: 20px;
+
+   -webkit-box-shadow: -35px 31px 34px -7px rgba(99,99,99,0.51);
+   -moz-box-shadow: -35px 31px 34px -7px rgba(99,99,99,0.51);
+   box-shadow: -35px 31px 34px -7px rgba(99,99,99,0.51);
+}
+
+h1{
+  font-size: 40px;
+}
+h2{
+  font-size: 20px;
+}
+
+a{
+  text-decoration: none;
+}
+
+button{
+  background: red;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+button a {
+  text-decoration:none  !important;
+  color:  white;
+}

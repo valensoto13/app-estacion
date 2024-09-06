@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Montserrat:wght@300&display=swap');
+
+body{
+	background: linear-gradient(90deg, rgba(253,29,29,1) 50%, rgba(255,137,31,1) 68%, rgba(255,167,44,1) 100%);	margin: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+*{
+	font-family: 'Montserrat', sans-serif;
+	color: 	white !important;
+}
+
+
+/*ESTACION*/
+
+a:link, a:visited, a:active {
+	text-decoration:none;
+	color: white;
+}
+
+.title{
+	text-decoration: underline;
+	color: black;
+}
+
+.centrar{
+	display:flex;
+	align-items:center;
+}
+
+.list-estacion-title h1{
+	font-size: 20px;
+	color: black;
+
+}
+
+#list-estacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1%;
+}
+
+.btn-estacion{
+	width: 30%;
+	height: 30%;
+	border-radius: 20px;
+	margin-top:1%;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+}
+
+.estacion-apodo{
+	display: flex;
+	justify-content: center;
+}
+
+.estacion-ubicacion{
+
+	padding-left:20px;
+}
+.estacion-visitas{
+	padding-left:25px;
+}
+
+
+/**/
+
+.container_detalle{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+	height: auto;
+}
+
+#opciones{
+	display: flex;
+/*	justify-content: space-around;*/
+	gap:20px;
+	height: 100%;
+	flex-direction: column;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+#opciones button{
+	border:none;
+	width: auto;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.55);
+	border-radius: 10px;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	font-size: 12pt;
+  	gap: 5px;
+  	cursor: pointer;
+	}
+
+#opciones button:hover{
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+#opcionesbutton:active{
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+#contenido{
+	background-color: rgba(0, 0, 0, 0.55);
+	color: white;
+	border-radius: 10px;
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: 85%;
+
+}
+
+#btn-volver{
+	width: 30px;
+	height: 40px;
+	background-color: #2e15db;
+	border-radius: 10px 0 10px 0;
+	position: absolute;
+
+}
+
+#btn-volver a{
+  		width: 100%;
+  		height: 100%;
+		color: white;
+		text-decoration: none;
+		display: flex;
+	  	align-items: center;
+	  	justify-content: center;
+  		font-size: 25pt !important;
+  	}
+
+#btn-volver:hover{
+	background-color: #2000ff;
+}
+
+#panel-container{
+	padding:8px;
+	height: 250px;
+	width: 100%;
+}
+
+#grafico{
+	height: 350px;
+	width: 100%;
+}
+
+#panel-title{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.title-info{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	gap: 5px;
+}
+
+#panel-container-temperatura, #panel-container-viento, #panel-container-fuego{
+	display: flex;
+}
+
+.panel-col{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.col-items{
+	width: 100%;
+}
+
+.item-title{
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.col-important{
+	display: flex;
+	justify-content: center;
+}
+
+.important-val-int{
+	font-size: 80px;
+}
+
+.important-val-unit{
+	  font-size: 36px;
+}
+
+.important-val-dec{
+	  font-size: 37px;
+}
+
+.panel-row{
+	display: flex;
+	justify-content: center;
+	gap:10px;
+}
+
+#temp-max, #temp-min, #sens-min, #sens-max{
+	text-align: center;
+}
+
+#sens-val-int{
+	font-size: 80px;
+}
+
+#item-viento{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	font-size: 40px;
+	flex-wrap: wrap;
+}
+#item-viento i{
+	font-size: 40px !important;
+}
+
+
+.item-value{
+	text-align: center;
+}
+
+#grafico__container{
+	position: relative;
+	height: 50%;
+	width: auto;
+  	padding: 0.5em;
+  	top: 160px;
+}

@@ -1,0 +1,33 @@
+*{
+			margin: 0rem;
+			padding: 0rem;
+			font-family: sans-serif;
+			box-sizing: border-box;
+		}
+
+	.card {
+	border: solid 1px gray;
+	border-radius: 8px;
+	width: 350px;
+	height: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.card__container {
+  border: solid 1px gray;
+  margin: 1rem;
+  width: 100%;
+  height: calc(100% - 2rem);
+  display: flex;
+}
+.card__container__image {
+  /*! border: solid; */
+  width: 50%;
+}
+.card__container__info {
+  border: solid;
+  width: 50%;
+}

@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap');
+
+
+:root{
+	--color-text-generic: white;
+	--color-text-important: red;
+}
+
+*{
+	padding: 0em;
+	margin: 0em;
+	box-sizing: border-box;
+	font-family: 'Nunito', sans-serif;
+/*	background-color: lightblue;*/
+}
+
+body{
+	background: lightblue;
+	
+}
+
+#wrapper{
+	width: 100%;
+	height: 100%;
+	/*border: solid 2px red;*/
+	display: flex;
+	flex-direction: column;
+	
+}
+
+#container{
+	margin: 1em;
+	/*border:solid 1px black;*/
+	height: calc(75vh - 7em);
+}
+
+#controls{
+	margin: 0 1em 5em 1em;
+	/*border:solid 1px black;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	/*grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto;*/
+	gap: 1em;
+	height: 100%;
+}
+
+#panel{
+	height: inherit;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: rgba(240, 248, 255, 0.300);
+}
+
+
+#menu {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	position: absolute;
+}
+
+#menu > a {
+	display: block;
+	text-decoration: none;
+}
+
+.fas.fa-chevron-left {
+	color: white;
+	background-color: #6AD2F5;
+	padding: 0.4em;
+	border-radius: 5px ;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.fas.fa-chevron-left:hover {
+	transform: scale(1.1);
+	background-color: #85CCE4;
+}
+
+.fas.fa-chevron-left: active{
+        /* transform: scale(1.1); */
+        transform: rotate(10deg);/*rotate hace que gire cunado lo pretan eso con el active*/
+    }
+
+#panel-title{
+
+	color: black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#title-ubicacion{
+	font-size: 27px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+
+#panel-container{
+	height: 40%;
+}
+
+#panel-container-fuego{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	height: calc(50% - 4em);
+	color: white;
+}
+
+#panel-container-temperatura{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	/*height: calc(50% - 5em);*/
+	color: white;
+}
+
+#panel-container-viento{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	color: white;
+}
+
+#panel-container-presion{
+	color: white;
+}
+
+#panel-container-humedad{
+	color: white;
+}
+
+#panel-canvas{
+
+	/*border:solid;*/
+	height: 50%;
+	display: flex;
+	justify-content: center;
+}
+
+.panel-col{
+	/*border: solid 1px red;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.col-items{
+	width: 100%;
+}
+
+.panel-row{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.btn-control {
+	border-radius: 75px;
+	border: solid 0px #131313;
+	overflow: hidden;
+	background-color: rgba(97, 160, 212, 0.671);
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	transition: background-color 0.5s;
+	outline: none;
+	box-shadow: 4px 4px 4px 0px black;
+	height: 150px;
+	width: 150px;
+    transition: all .100s linear;
+    
+}
+
+.btn-control:hover, .btn-control:active, .btn-control:focus {
+	background-color: rgba(41, 146, 233, 0.671);
+/*	border: solid 0px gray;*/
+/*	box-shadow: 4px 4px 4px -3px black;*/
+}
+.btn-control:active{
+	transform: rotate(30deg);
+}
+
+
+.btn-control-title{
+	/*background-color: red;*/
+	color: black;
+	text-align: center;
+	height: 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-control-container{
+	display: grid;
+	grid-template-columns: 50px auto;
+	color: white;
+	/*flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;*/
+}
+
+.control-title{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 40px;
+	/*border: solid;*/
+}
+
+
+.control-date{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	/*border:solid;*/
+}
+
+
+.col-important{
+	display: flex;
+	justify-content: center;
+}
+
+.important-val-int{
+	font-size: 80px;
+	/*border: solid 1px blue;*/
+}
+
+.important-val-unit {
+	font-size: 36px;
+	/* border: solid; */
+	/* height: 50%; */
+}
+
+.important-val-dec {
+	/* border: solid; */
+	font-size: 37px;
+	/* height: 50%; */
+}
+
+#col-sub {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-size: 12px;
+}
+
+.item-title{
+	font-size: 15px;
+	text-align: center;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	& i{
+		font-size: 10pt;
+	}
+}
+
+.item-value{
+	text-align: center;
+}
+
+.color-fuego{
+	color: #ec512b;
+}
+
+.color-temperatura{
+	color: #ffbf69;
+}
+
+.color-humedad{
+	color: #00bbf9;
+}
+
+.color-viento{
+	color: #e0fbfc;
+}
+
+.color-ubicacion{
+	color: red;
+}
+
+.color-presion{
+	color: #6ee55d;
+}
+
+.color-rojo{
+	color: red;
+}
+.color-verde{
+	color: green;
+}
+
+.visible{
+	display: none !important;
+}
+
+#medidor{
+	/*width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	background-color: red;*/
+}
+
+@media (min-width: 768px){
+
+	#wrapper{
+		flex-direction: row;
+	}
+
+	#container{
+		order: 1;
+		height: calc(100vh - 2em);
+		width: 50%;
+		margin: 1em 0 1em 1em;
+	}
+
+	#controls{
+		order: 2;
+		height: calc(100vh - 12em);
+		width: 50%;
+		margin: 1em;
+	}
+
+}
+
+@media (min-width: 576px){
+
+	#wrapper{
+		flex-direction: row;
+	}
+
+	#container{
+		order: 1;
+		height: calc(100vh - 2em);
+		width: 50%;
+		margin: 1em 0 1em 1em;
+	}
+
+	#controls{
+		order: 2;
+		height: 550px;
+		width: 50%;
+		margin: 1em;
+	}
+
+	.align-center{
+		text-align: center;
+	}
+
+	.visible{
+		display: inline-block !important;
+	}
+
+
+}
+
+@media (min-width: 320px) and (max-width: 767px){
+
+	#title-ubicacion {
+		font-size: 20px;
+	}
+
+	.important-val-int {
+		font-size: 60px;
+		/* border: solid 1px blue; */
+	}
+
+	.important-val-unit,  .important-val-dec {
+		font-size: 27px;
+		/* border: solid 1px blue; */
+	}
+
+	.btn-control-container {
+		display: grid;
+		grid-template-columns: auto;
+		color: white;
+	}
+
+	.control-title {
+		font-size: 24px;
+	}
+
+	.control-date{
+		font-size: 20px;
+	}
+
+}
+
+
