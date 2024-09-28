@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>app-estacion - Detalle</title>
+	<link rel="stylesheet" type="text/css" href="../views/static/css/styles.css">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+</head>
+
+<body>
+	<div id="wrapper">
+		<header class="header__panel">
+			<div id="chipid">{{CHIPID}}</div>
+			<h2> Estación </h2>
+			<div class="boton">
+				<a href="../panel">volver</a>
+			</div>
+		</header>
+		<main class="main__panel">
+
+			<div id="stats_list">
+				<div id="Temperatura" class="temp item" onclick="changeWindow(id)">
+					<div id="temp_txt">
+
+					</div>
+					<span class="material-symbols-outlined orange">
+						device_thermostat
+					</span>
+				</div>
+				<div id="Humedad" class="humedad item" onclick="changeWindow(id)">
+					<div id="hum_txt">
+
+					</div>
+					<span class="material-symbols-outlined blue">
+						humidity_mid
+					</span>
+				</div>
+				<div id="Presion" class="presion item" onclick="changeWindow(id)">
+					<div id="pres_txt">
+
+					</div>
+					<span class="material-symbols-outlined green">
+						arrow_downward
+					</span>
+				</div>
+				<div id="Fuego" class="fuego item" onclick="changeWindow(id)">
+					<div id="fuego_txt">
+
+					</div>
+					<span class="material-symbols-outlined red">
+						local_fire_department
+					</span>
+				</div>
+				<div id="Viento" class="viento item" onclick="changeWindow(id)">
+					<div id="viento_txt">
+
+					</div>
+					<span class="material-symbols-outlined lightblue">
+						airwave
+					</span>
+				</div>
+			</div>
+			<div id="graph">
+				<div class="conten">
+					<div class="context">
+						<div class="header__graph">
+							<span class="material-symbols-outlined red">
+								location_on
+							</span>
+							<p id="ubicacion_txt"></p>
+						</div>
+
+							<div id="Temperatura_info" class="temperatura">
+								<div class="real">
+									<div>
+										<div class="header__real">
+											<span class="material-symbols-outlined orange">
+												device_thermostat
+											</span>
+											TEMPERATURA
+										</div>
+										<div class="big-number">
+											<div class="temperatura-int" id="temp_int">8</div>
+											<div>
+												<div class="unidad">
+													ºC
+												</div>
+												<div class="temperatura-float" id="temp_float">.60</div>
+											</div>
+										</div>
+									</div>
+									<div class="min-max">
+										<div class="item">
+											<div class="header">
+												<span class="material-symbols-outlined red">
+													keyboard_arrow_up
+												</span>
+												Máxima
+											</div>
+											<p id="max_temp">16.20ºC</p>
+
+										</div>
+										<div class="item">
+											<div class="header">
+												<span class="material-symbols-outlined blue">
+													keyboard_arrow_down
+												</span>
+												Mínima
+											</div>
+											<p id="min_temp">16.20ºC</p>
+										</div>
+									</div>
+								</div>
+								<div class="sensacion">
+									<div>
+										<div class="header__real">
+											<span class="material-symbols-outlined blue">
+												boy
+											</span>
+											SENSASIÓN
+										</div>
+										<div class="big-number">
+											<div class="temperatura-int" id="sens_int">8</div>
+											<div>
+												<div class="unidad">
+													ºC
+												</div>
+												<div class="temperatura-float" id="sens_float">.60</div>
+											</div>
+										</div>
+									</div>
+									<div class="min-max">
+										<div class="item">
+											<div class="header">
+												<span class="material-symbols-outlined red">
+													keyboard_arrow_up
+												</span>
+												Máxima
+											</div>
+											<p id="max_sens">16.20ºC</p>
+
+										</div>
+										<div class="item">
+											<div class="header">
+												<span class="material-symbols-outlined blue">
+													keyboard_arrow_down
+												</span>
+												Mínima
+											</div>
+											<p id="min_sens">16.20ºC</p>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+								<div id="Humedad_info" class="humedad display_none">
+									<div class="header__real">
+										<span class="material-symbols-outlined blue">
+											humidity_mid
+										</span>
+										<p>HUMEDAD</p>
+									</div>
+									<div class="info">
+										<p id="hum_int">
+
+										</p>
+									</div>
+								</div>
+								<div id="Presion_info" class="humedad display_none">
+									<div class="header__real">
+										<span class="material-symbols-outlined green">
+											arrow_downward
+										</span>
+										<p>PRESION</p>
+									</div>
+									<div class="info">
+										<p id="pres_int">
+
+										</p>
+									</div>
+								</div>
+								<div id="Fuego_info" class="humedad display_none">
+									<div class="header__real">
+										<span class="material-symbols-outlined red">
+											local_fire_department
+										</span>
+										<p>FUEGO</p>
+									</div>
+									<div class="info">
+										<p id="level_txt">
+
+										</p>
+										<div class="columnas">
+											<div>
+												<p>FFMC :
+												<b id="ffmc">77.9744</b></p>
+												<p>DMC :
+												<b id="dmc">93.3525</b></p>
+												<p>DC :
+												<b id="dc">566.6470</b></p>
+											</div>
+											<div>
+												<p>ISI :
+												<b id="isi">1.7281</b></p>
+												<p>BUI :
+												<b id="bui">132.2401</b></p>
+												<p>FWI :
+												<b id="fwi">9.6994</b></p>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div id="Viento_info" class="humedad display_none">
+									<div class="header__real">
+										<span class="material-symbols-outlined lightblue">
+											airwave
+										</span>
+										<p>VIENTO</p>
+									</div>
+									<div class="info">
+										<p id="dir_txt">
+
+										</p>
+										<div class="velocidad">
+											<p id="vel_int"></p>
+											<div class="item">
+												<div class="header">
+													<span class="material-symbols-outlined red">
+														keyboard_arrow_up
+													</span>
+													Máximo
+												</div>
+												<p id="max_vel"></p>
+											</div>
+										</div>
+									</div>
+								</div>
+					</div>
+					<div class="grafico">
+						<canvas id="graph_canva">
+
+						</canvas>
+					</div>
+
+				</div>
+			</div>
+		</main>
+	</div>
+	<script type="text/javascript">
+		let actualWindow = "Temperatura"
+		let grafico = null
+		const CHIPID = document.getElementById('chipid').innerText;
+		const URL = `https://mattprofe.com.ar/proyectos/app-estacion/datos.php?chipid=${CHIPID}&cant=7`
+		refresh();
+		setInterval(refresh, 30000);
+		
+		function refresh(){
+			getStation(URL).then(data => {
+				document.querySelector('.header__panel h2').innerText = "Estacion " + data[0].estacion
+				dataProcess(data);
+				replaceData(data[0]);
+			})
+		}
+
+		
+		function replaceData(item) {
+			ubicacion_txt.innerText = item.ubicacion;
+			max_temp.innerText = item.tempmax + "°C"
+			min_temp.innerText = item.tempmin + "°C"
+			temp_int.innerText = item.temperatura.split(".")[0]
+			temp_float.innerText = "." + item.temperatura.split(".")[1]
+
+			max_sens.innerText = item.sensamax + "°C"
+			min_sens.innerText = item.sensamin + "°C"
+			sens_int.innerText = item.sensacion.split(".")[0]
+			sens_float.innerText = "." + item.sensacion.split(".")[1]
+
+			hum_int.innerText = item.humedad + "%"
+			pres_int.innerText = item.presion + " hPa"
+
+			level_txt.innerText = fireDangerLabel(item.fwi)
+
+			ffmc.innerText = item.ffmc
+			dmc.innerText = item.dmc
+			dc.innerText = item.dc
+			isi.innerText = item.isi
+			bui.innerText = item.bui
+			fwi.innerText = item.fwi
+
+			vel_int.innerText = item.viento +" Km/H"
+			max_vel.innerText = item.maxviento +" Km/H"
+		}
+
+		async function getStation(url) {
+			const response = await fetch(url);
+			const data = await response.json();
+			return data;
+		}
+
+		function fireDangerLabel(fwi) {
+			let fwiFloat = parseFloat(fwi)
+			if (fwiFloat >= 50) {
+				return "Extremo"
+			} else if (fwiFloat >= 38) {
+				return "Muy alto"
+			} else if (fwiFloat >= 21.3) {
+				return "Alto"
+			} else if (fwiFloat >= 11.2) {
+				return "Moderado"
+			} else if (fwiFloat >= 5.2) {
+				return "Bajo"
+			} else {
+				return "Muy bajo"
+			}
+		}
+		function changeWindow(target) {
+			document.querySelector(`#${actualWindow}_info`).classList.add("display_none")
+			actualWindow = target;
+			document.querySelector(`#${actualWindow}_info`).classList.remove("display_none")
+			getStation(URL).then(data => {
+				dataProcess(data);
+			})
+
+
+		}
+		function dataProcess(data) {
+			const item = data[0]
+			temp_txt.innerText = item.temperatura
+			hum_txt.innerText = item.humedad
+			pres_txt.innerText = item.presion
+			fuego_txt.innerText = fireDangerLabel(item.fwi)
+			viento_txt.innerText = item.viento
+
+
+
+			let temp = []
+			let hum = []
+			let pres = []
+			let viento = []
+			let fuego = []
+			let fecha = []
+			const actual = data[0];
+
+			data.shift();
+			data.forEach(e => {
+				const fechaCompleta = e.fecha;
+				const [_, horaCompleta] = fechaCompleta.split(" ");
+				const [hora, minutos, segundos] = horaCompleta.split(":");
+				const horaMinutos = `${hora}:${minutos}`
+				fecha.push(horaMinutos)
+
+				temp.push(e.temperatura);
+				hum.push(e.humedad);
+				viento.push(e.viento);
+				fuego.push(e.fwi);
+				pres.push(e.presion);
+			});
+
+			temp.reverse()
+			fecha.reverse()
+			let actualData
+			let bgColor = ''
+			switch (actualWindow) {
+				case 'Temperatura':
+					actualData = temp;
+					bgColor = 'rgb(255, 166, 0, 0.5)'
+					break;
+				case 'Humedad':
+					actualData = hum;
+					bgColor = 'rgb(0, 0, 255, 0.5)'
+					break;
+				case 'Presion':
+					actualData = pres;
+					bgColor = 'rgb(0, 128, 0, 0.5)'
+					break;
+				case 'Fuego':
+					actualData = fuego;
+					bgColor = 'rgb(255, 0, 0, 0.5)'
+					break;
+				case 'Viento':
+					actualData = viento;
+					bgColor = 'rgb(173, 216, 230, 0.5)'
+					break;
+				default:
+					break;
+			}
+			const valores = {
+				labels: fecha,
+				datasets: [{
+					label: (actualWindow != "Fuego") ? actualWindow : "FWI",
+					backgroundColor: bgColor,
+					borderColor: bgColor,
+					data: actualData,
+					tension: 0.4,
+					pointStyle: 'circle',
+					pointRadius: 6,
+					pointHoverRadius: 10
+				}]
+			}
+			renderGraph(valores);
+		}
+		function renderGraph(valores) {
+			if (grafico) {
+				grafico.destroy(); 
+			}
+
+			const options = {
+				indexAxis: 'x',
+				responsive: true,
+				scales: {
+					x: {
+						ticks: {
+							color: 'black'
+						}
+					},
+					y: {
+						beginAtZero: true, 
+						ticks: {
+							color: 'black'
+						},
+						grid: {
+							display: true, 
+							color: 'rgba(200, 200, 200, 0.5)' 
+						}
+					}
+				},
+				plugins: {
+					legend: {
+						display: false 
+					}
+				},
+				animation: {
+					duration: 0
+				}
+			};
+
+
+			const config = {
+				type: 'line',
+				data: valores,
+				options: options
+			}
+			grafico = new Chart(document.querySelector("#graph_canva").getContext('2d'), config)
+		}
+	</script>
+</body>
+
+</html>

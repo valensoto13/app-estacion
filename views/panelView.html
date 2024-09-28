@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>app-estacion - Panel</title>
+
+	<link rel="stylesheet" type="text/css" href="views/static/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="views/static/css/landing.css">
+	
+</head>
+<body>
+	<div id="wrapper">
+		<header class="header__panel">
+			<h2> Estaciónes de todas partes del mundo</h2>
+			<a href="logout" class="boton">Salir</a>
+		</header>
+		<main class="main__panel">
+			<template id="tpl__station">
+				<a href="" class="card">				
+					<div class="title item">
+						<p class="txt_apodo">
+							apodo
+						</p>
+						<div class="inactivo">
+							
+						</div>
+					</div>
+					<div class="data">
+						<div class="ubicacion item">
+							<p>Ubicacion</p>
+							<p class="txt_ubicacion"></p>
+						</div>
+						<div class="visitas item">
+							<p>Visitas</p>
+							<p class="txt_visitas"></p>
+						</div>
+					</div>	
+				</a>
+	 		</template>
+	 		<div id="stationList">
+	 			
+	 		</div>
+		</main>
+	 </div>
+	 <script type="text/javascript">
+	 	
+	 	getStations().then( data => {
+	 		data.forEach( row  => {
+	 			addStation(row);
+	 		});
+	 	})
+
+	 	function addStation(data){
+	 		const tpl = tpl__station.content;
+	 		const clon = tpl.cloneNode(true);
+	 		clon.querySelector(".txt_apodo").textContent = data.apodo;
+	 		clon.querySelector(".txt_ubicacion").textContent = data.ubicacion;
+	 		clon.querySelector(".txt_visitas").textContent = data.visitas;
+	 		if (data.dias_inactivo==0) {
+	 			clon.querySelector(".inactivo").style.display = 'none';
+	 		} else {
+	 			clon.querySelector(".inactivo").innerHTML = 'Inactivo';
+	 		}
+
+	 		clon.querySelector(".card").href = "detalle/"+data.chipid;
+	 		stationList.appendChild(clon);
+	 	}
+
+	 	async function getStations(){
+	 		const response = await fetch("https://mattprofe.com.ar/proyectos/app-estacion/datos.php?mode=list-stations");
+	 		const data = await response.json();
+	 		return data;
+	 	}
+
+	 </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>App-estacion</title>
+
+	<link rel="stylesheet" type="text/css" href="views/static/css/landing.css">
+	<link rel="stylesheet" type="text/css" href="views/static/css/styles.css">
+
+	
+</head>
+<body>
+	<div id="wrapper">
+		<header class="header">
+			<h1>Inicio de Sesión</h1>
+		</header>
+		
+		<main class="main">
+			<form class="conte">
+				<div class="label">
+					<label>Email:</label><br>
+					<input id="txt_email" type="text" name="">
+				</div>
+				<div class="label">
+					<label>Contraseña:</label><br>
+					<input id="txt_pass" type="password" name=""><br>
+					<a href="recovery">¿Olvidaste tu contraseña?</a>
+				</div>
+				
+				<div class="content">
+					<div class="btn">
+						<a id="btn_login" href="login" name="btn_login"> Loguearse</a>
+					</div>
+					<a href="register">¿No tienes una cuenta? Registrarse</a>
+				</div>
+				<label id="MSG_ERROR"></label>
+			</form>
+		</main>
+	</div>
+
+	
+	<script type="text/javascript">
+		btn_login.addEventListener("click", e => {
+
+	 		/*< evita la recarga de la página */
+	 		e.preventDefault();
+
+	 		/*< Realiza el intento de logueo */
+	 		login(txt_email.value, txt_pass.value).then( data => {
+
+	 			// si el logueo fue valido
+	 			if(data.list.errno == 200){
+	 				/*< Redirecciona al panel */
+	 				window.location.href = "panel";
+	 			}
+	 			console.log(data);
+	 			/*< El logueo no fue valido, muestra el error */
+	 			MSG_ERROR.textContent = data.list.error;
+	 		})
+	 	})
+
+
+	 	/**
+	 	 * 
+	 	 * @brief Realiza el logueo con el email y contraseña GET
+	 	 * @param string email correo electrónico del usuario
+	 	 * @param string pass contraseña del usuario
+	 	 * @return json respuesta del intento de logueo
+	 	 * 
+	 	 * */
+	 	async function login(email, pass){
+	 		/*< consulta a la API */
+	 		const response = await fetch("api/user/login/?txt_email="+email+"&txt_pass="+pass);
+
+			/*const texto = response.text();
+			console.log(texto);
+	 		/*< convierte la respuesta a formato json */
+	 		const data = await response.json();
+
+	 		return data;
+
+	 	}
+	</script>
+</body>
+</html>

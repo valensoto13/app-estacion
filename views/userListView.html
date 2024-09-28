@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Listado de alumnos</title>
+
+	<link rel="stylesheet" type="text/css" href="{{URL_WEB}}/static/css/list_user.css{{CACHE}}">
+</head>
+<body>
+
+
+
+	<header>
+	<h1>Listado de alumnos</h1>
+	</header>
+
+	<content>
+
+		
+		
+		<div id="listado">
+			
+		</div>
+
+		<button id="btn__card">Crear card</button>
+
+	</content>
+
+	<script type="text/javascript">
+		
+		btn__card.addEventListener("click", e => {
+			//
+			listado.innerHTML = "";
+			
+			getAlumnos().then(alumnos => {
+
+				alumnos.forEach( function(element, index) {
+					listado.innerHTML += getCard(element.id, element.email, element.add_date);		
+				});
+
+			});
+		})
+
+
+		async function getAlumnos(){
+
+			const response = await fetch("api/alumnos.php"); 
+			const data = await response.json();
+
+			return data;
+		}
+
+
+		function getCard (name, surname, birthdate) {
+			return `<div class="card"><div class="card__container"><div class="card__container__image"><img class="card__container__img" src=""></div><div class="card__container__info"><div class="card__container__info__name">${name}</div><div class="card__container__info__surname">${surname}</div><div class="card__container__info__birthdate">${birthdate}</div></div></div></div>`;	
+		}
+		
+
+	</script>
+	
+
+</body>
+</html>

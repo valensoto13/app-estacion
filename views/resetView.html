@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>app-estacion - Inicio</title>
+
+	<link rel="stylesheet" type="text/css" href="views/static/css/styles.css">
+	<link rel="stylesheet" type="tetx/css" href="views/static/css/landing.css">
+	
+</head>
+<body>
+	<div id="wrapper">
+		<header class="header__login">
+			<h1>Recuperacion de Cuenta</h1>
+		</header>
+		<div id="txt_token" class="display_none">{{TOKEN}}</div>
+		<main class="flexCenter main__login">
+			<form class="contenido">
+				<div class="label">
+					<label>Contraseña</label>
+					<input id="txt_pass" type="text" name="">
+				</div>
+				<div class="label">
+					<label>Repetir Contraseña</label>
+					<input id="txt_pass_repeat" type="password" name="">
+				</div>
+				
+				<div class="content">
+					<div class="btn">
+						<a id="btn_login" href="login"> Cambiar</a>
+					</div>
+				</div>
+				<label id="MSG_ERROR"></label>
+			</form>
+		</main>
+	</div>
+	<script type="text/javascript">
+		btn_login.addEventListener("click", e => {
+
+	 		/*< evita la recarga de la página */
+	 		e.preventDefault();
+
+	 		/*< Realiza el intento de logueo */
+
+	 		login(txt_pass.value, txt_pass_repeat.value, txt_token.innerText).then( data => {
+
+	 			// si el logueo fue valido
+	 			console.log(data);
+	 			/*< El logueo no fue valido, muestra el error */
+	 			MSG_ERROR.innerHTML = data.list.error;
+	 		})
+	 	})
+
+
+	 	/**
+	 	 * 
+	 	 * @brief Realiza el logueo con el email y contraseña GET
+	 	 * @param string email correo electrónico del usuario
+	 	 * @param string pass contraseña del usuario
+	 	 * @return json respuesta del intento de logueo
+	 	 * 
+	 	 * */
+	 	async function login(email, pass,token){
+	 		/*< consulta a la API */
+	 		const response = await fetch("api/user/reset/?txt_pass="+email+"&txt_pass_repeat="+pass+"&token="+token);
+	 		/*< convierte la respuesta a formato json */
+	 		const data = await response.json();
+
+	 		return data;
+
+	 	}
+	</script>
+</body>
+</html>
