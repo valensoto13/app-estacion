@@ -1,30 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-	<!-- {{URL_WEB}}  {{CACHE}}-->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Inicio</title>
+	<title>app-estacion - Inicio</title>
 
-	<link rel="stylesheet" type="text/css" href="https://mattprofe.com.ar/alumno/6846/app-estacion/static/css/landing.css">
+	<link rel="stylesheet" type="text/css" href="views/static/css/vars.css">
+	<link rel="stylesheet" type="text/css" href="views/static/css/styles.css">
+	
 </head>
 <body>
-	
-	<div class="container">
-		<div class="container-btn">
-			
-			<h1 >Bienvenido a App Estacion</h1>
-			<h2 >Haz clic para acceder a tu estacion meteorologica</h2>
-    		<button><a href="panel" >Acceder</a> </button>
-
-  		</div>
+	<div id="wrapper">
+		<header class="header__landing">
+			<h1>App Estación</h1>
+			<h2>Explora el clima desde cualquier lugar</h2>
+		</header>
+		<main class="flexCenter main__landing">
+			<div class="contenido">
+				<p>
+				App estación es una aplicación que te permite acceder a información meteorológica precisa y actualizada de diferentes estaciones alrededor del mundo. Consulta datos en tiempo real sobre temperatura, humedad, velocidad del viento, y más, para planificar tu día o simplemente satisfacer tu curiosidad sobre el clima
+				</p>
+				<div class="flexCenter content">
+					<div class="boton {{NOLOGUED}}">
+						<a href="login"> Loguearse</a>
+					</div>
+					<div class="boton {{NOLOGUED}}">
+						<a href="register"> Registrarse</a>
+					</div>
+					<div class="boton {{LOGUED}}">
+						<a href="panel"> Ir al panel</a>
+					</div>
+				</div>
+			</div>
+		</main>
 	</div>
-
-<!-- 
-	<nav>
-		<a href="{{URL_WEB}}/login">Login</a>
-		<a href="{{URL_WEB}}/register">Register</a>
-	</nav>
- -->
 </body>
 </html>

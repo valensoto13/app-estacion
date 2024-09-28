@@ -1,10 +1,15 @@
 <?php 
 
-	$tpl = new lib('views/panel.html');
+	// se muestra el contenido de SESSION (para debug)
+	$usuario = $_SESSION["app-estacion"]["user"];
 
-	// $tpl->assign("USER_EMAIL", $_SESSION[APP_NAME]["email"]);
-	
-	$tpl->printToScreen();
+	// crea el objeto con la vista
+	$tpl = new Pork("panel");
 
+	// carga la vista
+	$tpl->loadTPL();
+
+	// imprime en la vista en la página
+	$tpl->printTPL();
 
  ?>

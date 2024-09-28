@@ -1,61 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Montserrat:wght@300&display=swap');
-body{
-  background: rgb(253,29,29);
-background: linear-gradient(90deg, rgba(253,29,29,1) 50%, rgba(255,137,31,1) 68%, rgba(255,167,44,1) 100%);	margin: 0;
-	box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap');
 
 *{
-  font-family: 'Montserrat', sans-serif;
+
+	padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+body{
+		background: lightblue;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		gap: 20px;
+		padding: 20px;
+
+		& h1{
+			font-size: 30pt;
+		}
+		& button{
+			width: 120px;
+			height: 50px;
+			border-radius: 30px;
+			background-color: rgba(97, 160, 212, 0.671);
+			border: solid 0px #131313;
+			overflow: hidden;
+			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			transition: background-color 0.5s;
+			outline: none;
+		    transition: all .100s linear;
+		    border-color: black;
+			& a{
+				text-decoration: none;
+				color: black;
+				font-size: 20pt;
+			}
+		}
 }
 
-.container{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-
-}
-.container-btn{
-   margin-top: 15%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   background: white;
-   width: 50%;
-   height: 50%;
-   border-radius: 20px;
-
-   -webkit-box-shadow: -35px 31px 34px -7px rgba(99,99,99,0.51);
-   -moz-box-shadow: -35px 31px 34px -7px rgba(99,99,99,0.51);
-   box-shadow: -35px 31px 34px -7px rgba(99,99,99,0.51);
-}
-
-h1{
-  font-size: 40px;
-}
-h2{
-  font-size: 20px;
-}
-
-a{
-  text-decoration: none;
-}
-
-button{
-  background: red;
-  border:none;
-  position:relative;
-  height:60px;
-  font-size:1.6em;
-  padding:0 2em;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-  margin-bottom: 20px;
-  border-radius: 10px;
-}
-
-button a {
-  text-decoration:none  !important;
-  color:  white;
+@media screen and (max-width:700px) {
+	body{
+		& h1{
+			font-size: 20pt;
+		}
 }

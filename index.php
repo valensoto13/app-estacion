@@ -1,95 +1,91 @@
-<?php 
+<?php
 
-	// // Router
-
-	// // Constantes para el motor de plantillas
-	// define("URL_WEB", "https://mattprofe.com.ar/alumno/6846/");
-	// define("CACHE", false);
+	include_once 'env.php';
 
 
-
-	// define("DB_HOST", "localhost");
-	// define("DB_USER", "6846");
-	// define("DB_PASS", "dragon.avellano.llaves");
-	// define("DB_NAME", "6846");
-	// define("DB_PORT", 3306);
-
-	// include 'models/dbAbstract.php';
-	// include 'models/userModel.php';
-	// // incluimos el motor de plantillas
-	// include 'lib/primel.php';
-
-	// // analizamos lo que vino por la url y buscamos las variables que ahora se pasan como si fueran carpetas (/perfil/1000)
-	// $_SECTION = explode("/", $_SERVER["REQUEST_URI"]);  
-	
-	// // Borramos la primer posicion porqué siempre esta vacia
-	// unset($_SECTION[0]);
-	// unset($_SECTION[1]);
-	// unset($_SECTION[2]);
-	// unset($_SECTION[3]);
-
-	// // como se borro la primer posicion del vector hay que reindexar el vector, osea que arranque desde el 0
-	// $_SECTION = array_values($_SECTION);
+	include 'lib/mp-mailer/Mailer/src/PHPMailer.php';
+	include 'lib/mp-mailer/Mailer/src/SMTP.php';
+	include 'lib/mp-mailer/Mailer/src/Exception.php';
 
 
-	// // section en la posicion 0 siempre tiene la seccion a la cual quiero acceder
-	// if($_SECTION[0]!=""){
+	// incluimos a User para poder hacer uso de la variable cargada en session
+	include_once 'models/User.php';
 
-	// 	$section = $_SECTION[0];
+	// Inicia la sesión
+	session_start();
 
-	// 	if(!file_exists("controllers/{$section}Controller.php")){
-	// 		$section = "error404";	
-	// 	}
+	// motor de plantillas
+	include 'lib/Pork/Pork.php';  	
 
+
+    // por defecto seccion es register
+    $seccion = "landing";
+
+    // si existe slug entonces la sección es su contenido
+    if (isset($_GET['slug'])) { 
+        if (!empty($_GET['slug'])) { 
+            $seccion = $_GET['slug']; 
+        }
+    } 
+
+
+    $controllerPath = 'controllers/'.$seccion.'Controller.php';
+    // verificamos que exista el controlador
+    if(!file_exists($controllerPath)){
+        // si no existe el controlador lo llevamos al controlador de error 404
+        $seccion = "error404";
+        $controllerPath = 'controllers/'.$seccion.'Controller.php';
+    }
+
+	//=== firewall
+
+	// Listas de acceso dependiendo del estado del usuario
+	$seccion_login = ["panel", "logout", "abandonar", "detalle"];
+	$seccion_anonimo = ["landing", "login", "register", "reset", "recovery", "verify"];
+
+
+	// sesión iniciada
+	if(isset($_SESSION['app-estacion'])){
 		
-	// }else{ // si no existe section
-
-	// 	$section = "landing";
-	
-	// }
-	
-
-
-
-	// include "controllers/{$section}Controller.php";
-
-
-// session_start();
-
-	// include 'models/dbAbstractModel.php';
-	// include 'models/UserModel.php';
-	include 'lib/lib.php';
-	include 'env.php';
-
-	$_ROUTE = explode("/", $_GET["section"]);
-
-	// router
-	if($_ROUTE[0]!=""){
-		$section = $_ROUTE[0];
-
-		if(!file_exists("controllers/{$section}Controller.php")){
-			$section = "error404";
+		// recorre la lista de secciones no permitidas
+		foreach ($seccion_anonimo as $key => $value) {
+			// si está solicitando una sección no permitida
+			if($seccion == $value){
+				$seccion = "panel";
+				break;
+			}
 		}
 
-	}else{
-		$section = "landing";
+	}else{ // sesión no iniciada
+
+		// recorre la lista de secciones no permitidas
+		foreach ($seccion_login as $key => $value) {
+			// si está solicitando una sección no permitida
+			if($seccion == $value){
+				$seccion = "landing";
+				break;
+			}
+		}
+
+		
+
 	}
 
+	// === fin firewall
 
 
-	// Sesion iniciada
-	// if(isset($_SESSION[APP_NAME])){
+	/*echo "Sección solicitada: " . $seccion . "<br>"; 
+	echo "Archivo de controlador: controllers/{$seccion}Controller.php" . "<br>"; // Añade un mensaje si el controlador existe o no 
+	if (file_exists('controllers/'.$seccion.'Controller.php')) { 
+		echo "El controlador existe.<br>"; 
+	} else { 
+		echo "El controlador NO existe.<br>"; 
+	}*/
 
-	// 	if($section=='landing' || $section=='error404' || $section=='panel' || $section=='detalle'){
-	// 		$section='panel';
-	// 	}
+	include 'controllers/'.$seccion.'Controller.php';
 
-	// }else{ // Sesion no iniciada
-	// 	if($section=='panel' || $section=='logout'){
-	// 		$section='landing';
-	// 	}
-	// }
+?>
 
-	
-	include "controllers/{$section}Controller.php";
- ?>
+
+
+

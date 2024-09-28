@@ -1,7 +1,6 @@
 <?php 
 	
 	// Desactiva el reporte de errores de mysqli
-	mysqli_report(MYSQLI_REPORT_OFF);
 
 	/**
 	 * 
@@ -9,9 +8,13 @@
 	 * No deben ir aquí pero provisoriamente las colocamos aquí
 	 * 
 	 * */
-	
+	define("HOST", "localhost");
+	define("USER", "6846");
+	define("PASS", "dragon.avellano.llaves");
+	define("DB", "6846");
 
-	// debug - release
+	// Desactivamos el reporte de errores de mysqli
+	mysqli_report(MYSQLI_REPORT_OFF);
 	/**
 	 * 
 	 * Clase para heredar en los modelos de tabla que conecta a la base de datos

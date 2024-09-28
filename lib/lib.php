@@ -1,62 +1,87 @@
-
 <?php 
+
 
 	/**
 	 * 
-	 */
-	class lib
-	{
-		
-		public $url_tpl;
-		public $tpl;
+	 * Class lib Motor de plantillas
+	 * 
+	 * */
+	class lib{
 
-		function __construct($url_tpl)
-		{
-			$this->url_tpl = $url_tpl;
+		public $buffer;
+		private $tpl;
+		private $name_tpl;
 
-			if(!file_exists($url_tpl)){
-				echo("Error la plantilla solicitada <u>no existe</u>: <b>".$url_tpl."</b>");
+		/**
+		 * 
+		 * Se ejecuta al instanciar el objeto
+		 * 
+		 * @param string $name_tpl nombre de la vista
+		 * 
+		 * */
+		function __construct($name_tpl){
 
+			$this->name_tpl = $name_tpl;
+			$this->loadTPL();
+		}
+
+
+		/**
+		 * 
+		 * Carga la vista dentro de buffer
+		 * 
+		 * @return bool existe|no existe la vista
+		 * 
+		 * */
+		function loadTPL(){
+
+			if(!file_exists("views/".$this->name_tpl."View.html")){
+				echo "No existe la vista <b>".$this->name_tpl."</b>";
 				exit();
 			}
 
-			$this->tpl = file_get_contents($url_tpl);
+			$this->buffer = file_get_contents("views/".$this->name_tpl."View.html");
 
-			if($this->testVar("URL_WEB")){
-				$this->assign("URL_WEB", URL_WEB);
-			}
 
-			if($this->testVar("CACHE")){
-				if(CACHE==DEBUG){
-					$this->assign("CACHE", "?cache=".date("YmdHis"));
+			return true;
+		}
+
+		/**
+		 * 
+		 * Altera el buffer con los valores de las variables
+		 * 
+		 * @param array $vars esta indexado asociativa key es nombre de la variable
+		 * 
+		 * */
+		function setVarsTPL($vars){
+			foreach ($vars as $needle => $str) {
+				if($this->testVarTPL($needle)){
+				$this->buffer = str_replace("{{".$needle."}}", $str, $this->buffer);
 				}else{
-					$this->assign("CACHE", "");
+					echo "no existe la variable <b>$needle</b>";
+					exit();
 				}
-			}
-			
+			}	
 		}
 
-		private function testVar($var){
-			return strstr($this->tpl, "{{{$var}}}");			
+		/**
+		 * 
+		 * Verifica si la variable existe en el buffer
+		 * @return bool false si no existe la variable
+		 * 
+		 * */
+		function testVarTPL($name_var){
+			return strpos( $this->buffer, $name_var);
 		}
 
-		public function assign($var, $value){
-
-			if(!$this->testVar($var)){
-
-				echo("La variable <b>$var</b> no existe dentro de la plantilla <b>".$this->url_tpl."</b>");
-				exit();
-			}
-
-			$this->tpl = str_replace("{{{$var}}}", $value, $this->tpl);
-
+		/**
+		 * 
+		 * imprime el buffer en pantalla
+		 * 
+		 * */
+		function printTPL(){
+			echo $this->buffer;
 		}
-
-		public function printToScreen(){
-			echo $this->tpl;
-		}
-
-
 	}
 
  ?>

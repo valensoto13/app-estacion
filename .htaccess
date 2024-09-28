@@ -5,4 +5,6 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 
 # pasamos lo que viene despues del dominio a section
-RewriteRule ^(.*)$ index.php?section=$1
+RewriteRule ^(.*)$ index.php?slug=$1
+
+
